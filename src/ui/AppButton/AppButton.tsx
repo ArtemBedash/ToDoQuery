@@ -1,10 +1,10 @@
 import React from "react"
-import { AppBottonProps } from "../../types/interface"
-import styles from "./AppBotton.module.css"
+import { AppButtonProps } from "~/types/interface.ts"
+import styles from "./AppButton.module.css"
 
 
 
-const AppBotton: React.FC<AppBottonProps> = ({ children, icon, onClick, className = "", ...props }) => {
+const AppButton: React.FC<AppButtonProps> = ({ children, icon, onClick, className = "", ...props }) => {
   return (
     <button
       className={`${icon ? styles.icon : styles.button} ${className}`}
@@ -16,4 +16,4 @@ const AppBotton: React.FC<AppBottonProps> = ({ children, icon, onClick, classNam
   )
 }
 
-export default AppBotton
+export default AppButton

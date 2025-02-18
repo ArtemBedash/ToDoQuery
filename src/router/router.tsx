@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Layout } from "../components/Layout/Layout";
-import { Todo } from "../pages/Todo";
+import {TodoMy } from "~/pages";
 
 
 const router = createBrowserRouter([
@@ -9,14 +9,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Navigate to="/todo" />,
+        element: <Navigate to="/todomy" />,
       },
       {
-        path: "/todo",
-        element: <Todo />,
-      }
-    ]
-  }
+        path: "/todomy",
+        element: <TodoMy />,
+      },
+    ],
+  },
 ]);
 
-export { router }
+export { router };

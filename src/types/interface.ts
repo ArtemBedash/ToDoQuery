@@ -1,13 +1,17 @@
+import React from "react";
+
 export interface Task {
   id: number
   text: string
   completed: boolean
+  isEdited: boolean
 }
 
 export interface TodoItemProps {
   task: Task;
   handleDelete: (id: number) => void;
   handleComplete: (id: number) => void;
+  handleChange: (id: number) => void;
 }
 
 export interface TodoFormProps {
@@ -16,6 +20,6 @@ export interface TodoFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export interface AppBottonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface AppButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
 }
