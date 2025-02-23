@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import style from './ToDoEdit.module.css';
 import {AppButton, UIInput} from "~/ui";
-import {useAppDispatch} from "~/store/store.ts";
-import {updateItem} from "~/store/slices/todos/todosSlice.ts";
 import {Task} from "~/types/interface.ts";
+import {useUpdateTaskMutation} from "~/store/api/tasksApi.ts";
+
 
 interface TodoEditProps {
     task: Task
@@ -11,15 +11,18 @@ interface TodoEditProps {
 
 const ToDoEdit:React.FC<TodoEditProps> = ({task}) => {
     const [value, setValue] = useState<string>('')
-    const dispatch = useAppDispatch()
+    const[updateTask] = useUpdateTaskMutation();
 
-    const handleSubmit = (id:number) => {
-        console.log(id)
-        dispatch(updateItem({
-            id,
-            text:value
-        }))
+
+    const handleSubmit = async (task: Task) => {
+        if(value){
+            task = {...task,text:value}
+            await updateTask({task})
+        }
+
         setValue('')
+
+
 
     }
 
@@ -27,7 +30,7 @@ const ToDoEdit:React.FC<TodoEditProps> = ({task}) => {
     return (
         <div className={style.form}>
             <UIInput value={value} onChange={(e) => setValue(e.target.value)}/>
-            <AppButton onClick={() => handleSubmit(task.id)}>Update Task</AppButton>
+            <AppButton onClick={() => handleSubmit(task)}>Update Task</AppButton>
         </div>
     );
 };

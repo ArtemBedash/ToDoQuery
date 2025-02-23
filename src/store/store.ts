@@ -1,23 +1,20 @@
-import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux'
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import {useSelector, useDispatch, TypedUseSelectorHook} from 'react-redux'
+import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import todosSlice from './slices/todos/todosSlice'
-// import auth from './slices/auth/auth'
-
+import {tasksApi} from "~/store/api/tasksApi.ts";
 
 const rootReducer = combineReducers({
-  todosSlice
-  // [registrationApi.reducerPath]: registrationApi.reducer,
-  // auth
+    todosSlice,
+    [tasksApi.reducerPath]: tasksApi.reducer,
 })
 
 export const setupStore = () => {
-  return configureStore({
-    reducer: rootReducer,
-    // middleware: (getDefaultMiddleware) =>
-    //   getDefaultMiddleware()
-    //     .concat(registrationApi.middleware)
-    //     .concat(usersApi.middleware),
-  })
+    return configureStore({
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware()
+                .concat(tasksApi.middleware)
+    })
 }
 
 export type RootState = ReturnType<typeof rootReducer>
