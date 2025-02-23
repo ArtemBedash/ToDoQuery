@@ -1,5 +1,5 @@
 import {TodoItem} from '~/components/Todo'
-import style from '../../todo.module.css'
+import style from '~/pages/TodoMy/todo.module.css'
 import ToDoEdit from '~/pages/TodoMy/components/ToDoEdit/ToDoEdit'
 import {
     useChangeStatusMutation,
