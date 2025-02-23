@@ -1,10 +1,8 @@
 import {useSelector, useDispatch, TypedUseSelectorHook} from 'react-redux'
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
-import todosSlice from './slices/todos/todosSlice'
 import {tasksApi} from "~/store/api/tasksApi.ts";
 
 const rootReducer = combineReducers({
-    todosSlice,
     [tasksApi.reducerPath]: tasksApi.reducer,
 })
 
