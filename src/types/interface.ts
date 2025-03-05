@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface Task {
-  id: string
+  id: string|number
   text: string
   completed: boolean
   isEdited: boolean
@@ -9,9 +9,9 @@ export interface Task {
 
 export interface TodoItemProps {
   task: Task;
-  handleDelete: (id: string) => void;
-  handleComplete: (id: string) => void;
-  handleChange: (id: string) => void;
+  handleDelete: (id: string|number) => void;
+  handleComplete: (id: string|number) => void;
+  handleChange: (id: string|number) => void;
 }
 
 export interface TodoFormProps {

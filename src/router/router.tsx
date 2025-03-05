@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Layout } from "../components/Layout/Layout";
-import {TodoMy } from "~/pages";
+import {TodoMy, TodoRtkQuery} from "~/pages";
+import Form from "~/pages/Form/Form.tsx";
 
 
 const router = createBrowserRouter([
@@ -15,6 +16,15 @@ const router = createBrowserRouter([
         path: "/todomy",
         element: <TodoMy />,
       },
+      {
+        path: "/todomyquery",
+        element: <TodoRtkQuery />,
+      },
+      {
+        path: "/form",
+        element: <Form/>,
+      },
+
     ],
   },
 ]);

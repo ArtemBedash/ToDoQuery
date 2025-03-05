@@ -1,46 +1,30 @@
 import {TodoItem} from '~/components/Todo'
-import style from '~/pages/TodoMy/todo.module.css'
+import {getTodos} from '~/store/slices/todos/selectors'
+import style from '../../todo.module.css'
+import {useAppDispatch, useAppSelector} from '~/store/store'
+import {changeItem, changeItemStatus, deleteItem} from "~/store/slices/todos/todosSlice.ts";
 import ToDoEdit from '~/pages/TodoMy/components/ToDoEdit/ToDoEdit'
-import {
-    useChangeStatusMutation,
-    useDeleteTaskMutation,
-    useEditTaskMutation,
-    useGetTasksQuery
-} from "~/store/api/tasksApi.ts";
+
 
 const TodoContainerMy = () => {
+    const items = useAppSelector(getTodos)
+    const dispatch = useAppDispatch()
+    console.log('items:', items);
 
-    const {data: items = [],isLoading} = useGetTasksQuery();
-    const [deleteTask] = useDeleteTaskMutation();
-    const [changeStatus] = useChangeStatusMutation();
-    const [editTask] = useEditTaskMutation();
 
-    if(isLoading){
-        return <div>Loading.......</div>;
-    }
+    const handleDelete = (id: number|string) => {
 
-    const handleDelete = async (id: string) => {
-        try {
-            await deleteTask(id).unwrap();
-        } catch (error) {
-            console.error("Error deleting task:", error);
-        }
-    }
-
-    const handleComplete = async (id: string) => {
-        const task = items.find(item => item.id === id);
-        if (task) {
-            await changeStatus({task});
-        }
+        dispatch(deleteItem(id))
 
     }
 
+    const handleComplete = (id: number|string) => {
+        dispatch(changeItemStatus(id))
+    }
 
-    const handleChange = async (id: string) => {
-        const task = items.find(item => item.id === id);
-        if (task) {
-            await editTask({task});
-        }
+    const handleChange = (id: number|string) => {
+
+        dispatch(changeItem(id))
     }
 
     return (

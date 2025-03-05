@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 
 interface Task {
-    id: string;
+    id: string|number;
     text: string;
     completed: boolean;
     isEdited: boolean;

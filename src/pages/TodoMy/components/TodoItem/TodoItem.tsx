@@ -1,6 +1,6 @@
 import React from 'react'
-import { AppButton, SvgIcon } from '../../../ui'
-import { TodoItemProps } from '../../../types/interface'
+import { AppButton, SvgIcon } from '../../../../ui'
+import { TodoItemProps } from '~/types/interface.ts'
 import style from './TodoItem.module.css'
 
 const TodoItem: React.FC<TodoItemProps>  = ({task, handleDelete, handleComplete, handleChange}) => {
